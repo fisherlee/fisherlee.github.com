@@ -1,60 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1038.36">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; min-height: 16.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Heiti SC Light'; color: #06830e}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #06830e}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #2a35d6}
-    span.s1 {color: #b830a1}
-    span.s2 {font: 14.0px Menlo}
-    span.s3 {color: #000000}
-    span.s4 {color: #2a35d6}
-    span.s5 {color: #06830e}
-    span.s6 {font: 14.0px 'Heiti SC Light'; color: #06830e}
-    span.s7 {font: 14.0px 'Heiti SC Light'}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">import</span> Image <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="s1">import</span> glob, os <span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p3"><span class="s2">#</span>图片批处理<span class="s2"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">def</span> icon(): <span class="Apple-converted-space"> </span></p>
-<p class="p4"><span class="s3"><span class="Apple-converted-space">    </span></span>#for files in glob.glob('//Users//apple//Desktop//*.png'): <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>filepath,filename = os.path.split(<span class="s4">'//Users//apple//Desktop//iTunesArtwork.png'</span>) <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>filterame,exts = os.path.splitext(filename) <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span><span class="s5">#</span><span class="s6">输出路径</span><span class="s5"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p5"><span class="s3"><span class="Apple-converted-space">        </span>opfile = r</span>'//Users//apple//Desktop//icon//'<span class="s3"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s3"><span class="Apple-converted-space">        </span></span>#<span class="s7">判断</span>opfile<span class="s7">是否存在，不存在则创建</span> <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span><span class="s1">if</span> (os.path.isdir(opfile)==False): <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>os.mkdir(opfile) <span class="Apple-converted-space"> </span></p>
-<p class="p5"><span class="s3"><span class="Apple-converted-space">        </span>im = Image.open(</span>'//Users//apple//Desktop//iTunesArtwork.png'<span class="s3">) <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>w,h = im.size<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_iTunesArtwork = im.resize((w, h)) <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_iTunesArtwork.save(opfile+<span class="s4">'iTunesArtwork.png'</span>)<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon114 = im.resize((<span class="s4">114</span>, <span class="s4">114</span>),Image.ANTIALIAS) <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon114.save(opfile+<span class="s4">'Icon@2x.png'</span>)<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon72 = im.resize((<span class="s4">72</span>,<span class="s4">72</span>),Image.ANTIALIAS)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon72.save(opfile+<span class="s4">'Icon-72.png'</span>)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon57 = im.resize((<span class="s4">57</span>,<span class="s4">57</span>),Image.ANTIALIAS)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon57.save(opfile+<span class="s4">'Icon.png'</span>)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon58 = im.resize((<span class="s4">58</span>,<span class="s4">58</span>),Image.ANTIALIAS)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon58.save(opfile+<span class="s4">'Icon-Small@2x.png'</span>)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon29 = im.resize((<span class="s4">29</span>,<span class="s4">29</span>),Image.ANTIALIAS)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon29.save(opfile+<span class="s4">'Icon-Small.png'</span>)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon50 = im.resize((<span class="s4">50</span>,<span class="s4">50</span>),Image.ANTIALIAS)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>im_icon50.save(opfile+<span class="s4">'Icon-Small-50.png'</span>)</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="s1">if</span> __name__==<span class="s4">'__main__'</span>: <span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>icon() <span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p5"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s1">print</span><span class="s3"> </span>'--------end-------'<span class="s3"> <span class="Apple-converted-space"> </span></span></p>
-</body>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Fisherlee.github.com by fisherlee</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Fisherlee.github.com</h1>
+        <h2>Li Wei Blog. iOS Developer</h2>
+        <a href="https://github.com/fisherlee" class="button"><small>Follow me on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>import Image<br>
+import glob, os  </p>
+
+<h1>图片批处理</h1>
+
+<p>def icon():<br>
+    #for files in glob.glob('//Users//apple//Desktop//*.png'):<br>
+        filepath,filename = os.path.split('//Users//apple//Desktop//iTunesArtwork.png')<br>
+        filterame,exts = os.path.splitext(filename)<br>
+        #输出路径<br>
+        opfile = r'//Users//apple//Desktop//icon//'<br>
+        #判断opfile是否存在，不存在则创建<br>
+        if (os.path.isdir(opfile)==False):<br>
+            os.mkdir(opfile)<br>
+        im = Image.open('//Users//apple//Desktop//iTunesArtwork.png')<br>
+        w,h = im.size 
+        im_iTunesArtwork = im.resize((w, h))<br>
+        im_iTunesArtwork.save(opfile+'iTunesArtwork.png') 
+        im_icon114 = im.resize((114, 114),Image.ANTIALIAS)<br>
+        im_icon114.save(opfile+'<a href="mailto:Icon@2x.png">Icon@2x.png</a>') 
+        im_icon72 = im.resize((72,72),Image.ANTIALIAS)
+        im_icon72.save(opfile+'Icon-72.png')
+        im_icon57 = im.resize((57,57),Image.ANTIALIAS)
+        im_icon57.save(opfile+'Icon.png')
+        im_icon58 = im.resize((58,58),Image.ANTIALIAS)
+        im_icon58.save(opfile+'<a href="mailto:Icon-Small@2x.png">Icon-Small@2x.png</a>')
+        im_icon29 = im.resize((29,29),Image.ANTIALIAS)
+        im_icon29.save(opfile+'Icon-Small.png')
+        im_icon50 = im.resize((50,50),Image.ANTIALIAS)
+        im_icon50.save(opfile+'Icon-Small-50.png')</p>
+
+<p>if <strong>name</strong>=='__main__':<br>
+    icon()  </p>
+
+<pre><code>print '--------end-------' 
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
 </html>
