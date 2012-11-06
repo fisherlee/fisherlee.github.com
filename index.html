@@ -9,16 +9,19 @@
   <style type="text/css">
     p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo}
     p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; min-height: 16.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Heiti SC Light'; color: #06830e}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px STSong; color: #06830e}
     p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #06830e}
     p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #2a35d6}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #2a35d6; min-height: 16.0px}
+    p.p7 {margin: 0.0px 0.0px 17.0px 0.0px; line-height: 22.0px; font: 17.0px Arial; background-color: #ffffff}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 22.0px; font: 17.0px Consolas; background-color: #eeeeee}
     span.s1 {color: #b830a1}
     span.s2 {font: 14.0px Menlo}
     span.s3 {color: #000000}
     span.s4 {color: #2a35d6}
     span.s5 {color: #06830e}
-    span.s6 {font: 14.0px 'Heiti SC Light'; color: #06830e}
-    span.s7 {font: 14.0px 'Heiti SC Light'}
+    span.s6 {font: 14.0px STSong; color: #06830e}
+    span.s7 {font: 14.0px STSong}
   </style>
 </head>
 <body>
@@ -56,5 +59,17 @@
 <p class="p1"><span class="Apple-converted-space">    </span>icon() <span class="Apple-converted-space"> </span></p>
 <p class="p2"><span class="Apple-converted-space">  </span></p>
 <p class="p5"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s1">print</span><span class="s3"> </span>'--------end-------'<span class="s3"> <span class="Apple-converted-space"> </span></span></p>
+<p class="p6"><br></p>
+<p class="p6"><br></p>
+<p class="p7">Maybe you just need to commit. I ran into this when I did:</p>
+<p class="p8">$~ mkdir repo &amp;&amp; cd repo</p>
+<p class="p8">$~ git remote add origin /path/to/origin.git</p>
+<p class="p8">$~ git add .</p>
+<p class="p7">Oops! Never committed!</p>
+<p class="p8">$~ git push -u origin master</p>
+<p class="p8">error: src refspec master does not match any.</p>
+<p class="p7">All I had to do was:</p>
+<p class="p8">$~ git commit -m 'initial commit'</p>
+<p class="p8">$~ git push origin master</p>
 </body>
 </html>
