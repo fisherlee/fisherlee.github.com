@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swift2 Swizzled</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/css/social-share-kit.css" type="text/css">
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Li Wei" href="/feed.xml" />
+  <!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Swift2 Swizzled - Li Wei</title>
+<meta property="og:title" content="Swift2 Swizzled" />
+<meta name="description" content="new file AppLoad.swif" />
+<meta property="og:description" content="new file AppLoad.swif" />
+<link rel="canonical" href="http://localhost:4000/2016-10-27/swift2-swizzled/" />
+<meta property="og:url" content="http://localhost:4000/2016-10-27/swift2-swizzled/" />
+<meta property="og:site_name" content="Li Wei" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-10-27T09:58:11+08:00" />
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Swift2 Swizzled",
+    "datePublished": "2016-10-27T09:58:11+08:00",
+    "description": "new file AppLoad.swif",
+    "url": "http://localhost:4000/2016-10-27/swift2-swizzled/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- Google Analytics -->
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</head>
+
+<body>
+  <div class="content-container">
+    <header>
+  <h1 class="header-small">
+    <a href="http://localhost:4000">Li Wei</a>
+  </h1>
+</header>
+<div class="post">
+  <h1 class="post-title">Swift2 Swizzled</h1>
+  <span class="post-date">
+    <time>27 Oct 2016</time>
+  </span>
+  <div class="post-tag">
+    <ul>
+      
+    </ul>
+  </div>
+
+  <p>new file <code class="highlighter-rouge">AppLoad.swif</code></p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">UIKit</span>
+
+<span class="kd">extension</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">initialize</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="c1">// make sure this isn't a subclass</span>
+        <span class="k">if</span> <span class="k">self</span> <span class="o">!==</span> <span class="kt">UIViewController</span><span class="o">.</span><span class="k">self</span> <span class="p">{</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+
+        <span class="kd">struct</span> <span class="kt">DispatchToken</span> <span class="p">{</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">token</span><span class="p">:</span> <span class="n">dispatch_once_t</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="p">}</span>
+
+        <span class="nf">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="kt">DispatchToken</span><span class="o">.</span><span class="n">token</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">originalSelector</span> <span class="o">=</span> <span class="kd">#selector(</span><span class="nf">UIViewController.viewDidLoad</span><span class="kd">)</span>
+            <span class="k">let</span> <span class="nv">swizzledSelector</span> <span class="o">=</span> <span class="kd">#selector(</span><span class="nf">self.lw_viewDidLoad</span><span class="kd">)</span>
+
+            <span class="k">let</span> <span class="nv">originalMethod</span> <span class="o">=</span> <span class="nf">class_getInstanceMethod</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">originalSelector</span><span class="p">)</span>
+            <span class="k">let</span> <span class="nv">swizzledMethod</span> <span class="o">=</span> <span class="nf">class_getInstanceMethod</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">swizzledSelector</span><span class="p">)</span>
+
+            <span class="k">let</span> <span class="nv">addMethod</span> <span class="o">=</span> <span class="nf">class_addMethod</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">originalSelector</span><span class="p">,</span> <span class="nf">method_getImplementation</span><span class="p">(</span><span class="n">swizzledMethod</span><span class="p">),</span> <span class="nf">method_getTypeEncoding</span><span class="p">(</span><span class="n">swizzledMethod</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">addMethod</span> <span class="p">{</span>
+                <span class="nf">class_replaceMethod</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">swizzledSelector</span><span class="p">,</span> <span class="nf">method_getImplementation</span><span class="p">(</span><span class="n">originalMethod</span><span class="p">),</span> <span class="nf">method_getTypeEncoding</span><span class="p">(</span><span class="n">originalMethod</span><span class="p">))</span>
+            <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+                <span class="nf">method_exchangeImplementations</span><span class="p">(</span><span class="n">originalMethod</span><span class="p">,</span> <span class="n">swizzledMethod</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">lw_viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"viewDidLoad: </span><span class="se">\(</span><span class="kt">NSStringFromClass</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">classForCoder</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">albumClassName</span> <span class="o">=</span> <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">classForCoder</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">albumClassName</span><span class="o">.</span><span class="nf">containsString</span><span class="p">(</span><span class="s">"SwiftAlbum"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">colorLiteralRed</span><span class="p">:</span> <span class="mi">244</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">244</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">244</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="kt">AppLoad</span><span class="p">:</span> <span class="kt">NSObject</span> <span class="p">{</span>
+
+
+<span class="p">}</span></code></pre></figure>
+
+
+
+  <!-- Share -->
+  
+  <div class="post-share">
+    <hr>
+    <span>Share this: <br /></span>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2016-10-27/swift2-swizzled/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-facebook"></a>
+<a href="https://twitter.com/intent/tweet?text=Swift2 Swizzled&url=http://localhost:4000/2016-10-27/swift2-swizzled/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-twitter"></a>
+<a href="https://plus.google.com/share?url=http://localhost:4000/2016-10-27/swift2-swizzled/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-google-plus"></a>
+<a href="https://www.tumblr.com/share?url=http://localhost:4000/2016-10-27/swift2-swizzled/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-tumblr"></a>
+<a href="mailto:?subject=Swift2 Swizzled&amp;body=Check out this site http://localhost:4000/2016-10-27/swift2-swizzled/" class="ssk ssk-icon ssk-email"></a>
+
+    <hr>
+  </div>
+  
+
+  <!-- Disqus -->
+  
+  <section id="disqus_thread"></section>
+  <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//your-id.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+</div>
+
+
+    <!-- Documents about icons are here: http://fontawesome.io/icons/ -->
+<div class="footer">
+	<hr />
+	<div class="footer-link">
+		
+		<a href="https://www.facebook.com/ios.fisherlee"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://twitter.com/xcode_dev"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://github.com/fisherlee"><i class="fa fa-github" aria-hidden="true"></i></a>
+		
+
+		
+
+		
+
+		
+
+		
+
+	</div>
+	© 2016 li wei. All rights reserved.
+</div>
+
+  </div>
+</body>
+</html>
