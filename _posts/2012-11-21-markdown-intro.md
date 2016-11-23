@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "markdown 语法"
-date:   2015-11-21 10:58:11 +0800
+date:   2012-11-21 10:58:11 +0800
 categories: markdown
 ---
 
@@ -383,4 +383,8 @@ D-->>A: Dashed open arrow
 [^footnote]: 这是一个 *注脚* 的 **文本**。
 
 [^footnote2]: 这是另一个 *注脚* 的 **文本**。
+
+
+
+
 
