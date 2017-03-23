@@ -12,7 +12,7 @@ categories: objc
 
 代码一看即懂。
 
-![GitHub地址](https://github.com/fisherlee/ViewControllerEffects)
+[GitHub地址](https://github.com/fisherlee/ViewControllerEffects)
 
 #### ABCAnimator
 
