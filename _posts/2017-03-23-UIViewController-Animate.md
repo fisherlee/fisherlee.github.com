@@ -9,8 +9,10 @@ categories: objc
 
 使用方法很简单，工程中引入，“UIViewController+ABC.h” 和“ABCAnimator.h”，
 在“ABCAnimator.m”中的“- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext”加入自己写的动画即可。
+
 代码一看即懂。
-GitHub地址：https://github.com/fisherlee/ViewControllerEffects
+
+![GitHub地址](https://github.com/fisherlee/ViewControllerEffects)
 
 #### ABCAnimator
 
