@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Runtime简单应用-UIViewController切换动画的小框架"
-date:   2017-01-22 15:50:10 +0800
+date:   2017-03-23 15:50:10 +0800
 categories: objc
 ---
 
@@ -51,7 +51,7 @@ GitHub地址：https://github.com/fisherlee/ViewControllerEffects
         self.navigationController.delegate = self;
     }
 
-    NSString \*cls = NSStringFromClass([self class]);
+    NSString *cls = NSStringFromClass([self class]);
     NSLog(@"cls: %@", cls);
 
     [self abc_viewWillAppear:YES];
@@ -64,10 +64,10 @@ GitHub地址：https://github.com/fisherlee/ViewControllerEffects
     [self abc_viewDidDisappear:YES];
 }
 
-- (id <UIViewControllerAnimatedTransitioning>)abc_navigationController:(UINavigationController \*)navigationController
+- (id <UIViewControllerAnimatedTransitioning>)abc_navigationController:(UINavigationController *)navigationController
                                             animationControllerForOperation:(UINavigationControllerOperation)operation
-                                                         fromViewController:(UIViewController \*)fromVC
-                                                           toViewController:(UIViewController \*)toVC {
+                                                         fromViewController:(UIViewController *)fromVC
+                                                           toViewController:(UIViewController *)toVC {
     NSInteger type = [self.animator_type integerValue];
     double interval = 0.5;
     if ([self.time_interval doubleValue] > 0) {
@@ -76,12 +76,12 @@ GitHub地址：https://github.com/fisherlee/ViewControllerEffects
 
     if (type != 0) {
         if (operation == UINavigationControllerOperationPush) {
-            ABCAnimator \*animator = [[ABCAnimator alloc] initWithTimeInterval:interval];
+            ABCAnimator *animator = [[ABCAnimator alloc] initWithTimeInterval:interval];
             animator.transition = type;
             return animator;
         }
         if (operation == UINavigationControllerOperationPop) {
-            ABCAnimator \*animator = [[ABCAnimator alloc] initWithTimeInterval:interval];
+            ABCAnimator *animator = [[ABCAnimator alloc] initWithTimeInterval:interval];
             animator.transition = type;
             return animator;
         }
@@ -106,19 +106,19 @@ GitHub地址：https://github.com/fisherlee/ViewControllerEffects
     }
 }
 
-- (void)setTime_interval:(NSNumber \*)time_interval {
+- (void)setTime_interval:(NSNumber *)time_interval {
     objc_setAssociatedObject(self, &kTimeIntervalAssociatedKey, time_interval, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSNumber \*)time_interval {
+- (NSNumber *)time_interval {
     return objc_getAssociatedObject(self, &kTimeIntervalAssociatedKey);
 }
 
-- (void)setAnimator_type:(NSNumber \*)animator_type {
+- (void)setAnimator_type:(NSNumber *)animator_type {
     objc_setAssociatedObject(self, &kAnimatorAssociatedKey, animator_type, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSNumber \*)animator_type {
+- (NSNumber *)animator_type {
     return objc_getAssociatedObject(self, &kAnimatorAssociatedKey);
 }
 
