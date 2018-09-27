@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "apache2 wordpress https"
+title:  "apache2 wordpress建站并设置https访问"
 date:   2018-09-26 15:50:11 +0800
 categories: web
 ---
