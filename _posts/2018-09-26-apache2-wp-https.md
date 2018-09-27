@@ -146,7 +146,7 @@ wordpress放到 /var/wwww/html/wordpress 目录下面
 
 
 
- ##### 3. 重启apache2
+##### 3. 重启apache2
 
-
+apache2重启命令
  `/etc/init.d/apache2 restart` 或者 `service apache2 restart`
