@@ -5,7 +5,9 @@ date:   2018-09-26 15:50:11 +0800
 categories: web
 ---
 
-### 域名访问 wordpress (http://www.domain.com)
+
+#### 一、域名访问 wordpress (http://www.domain.com)
+
 
 wordpress放到 /var/wwww/html/wordpress 目录下面
 
@@ -34,9 +36,11 @@ wordpress放到 /var/wwww/html/wordpress 目录下面
 配置完后直接用域名访问wordpress站点，不需要再加上目录名称。
 
 
-### apache2 wordpress开启https
+#### 二、apache2 wordpress开启https
 
-#### 1. apache2 配置
+
+##### 1. apache2 配置
+
 
 - 开启ssl模块  `sudo a2enmod ssl`
 
@@ -51,7 +55,6 @@ wordpress放到 /var/wwww/html/wordpress 目录下面
 ``` shell
     LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so
 ```
-
 
 - 修改 /etc/apache2/ports.conf 增加443端口
 
@@ -82,7 +85,9 @@ wordpress放到 /var/wwww/html/wordpress 目录下面
     SSLHonorCipherOrder on
 ```
 
-#### 2. wordpress 配置
+
+##### 2. wordpress 配置
+
 
  进入wordpress安装目录 /var/www/html/wordpress/
 
@@ -140,6 +145,8 @@ wordpress放到 /var/wwww/html/wordpress 目录下面
  `update wp_posts set post_content = replace(post_content, 'http://www.domain.com','https://www.domain.com');`
 
 
- #### 3. 重启apache2
- 
+
+ ##### 3. 重启apache2
+
+
  `/etc/init.d/apache2 restart` 或者 `service apache2 restart`
