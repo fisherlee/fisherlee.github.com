@@ -20,6 +20,6 @@ categories: web
 
 - [android 应用宝](http://a.app.qq.com/o/simple.jsp?pkgname=com.hlbear.edu)
 
-![截图1](https://raw.githubusercontent.com/fisherlee/fisherlee.github.com/master/images/hanlin18.png)
+![截图1](https://as-1253952110.cos.ap-chengdu.myqcloud.com/github/hanlin18.png)
 
-![截图2](https://raw.githubusercontent.com/fisherlee/fisherlee.github.com/master/images/hanlin19.png)
+![截图2](https://as-1253952110.cos.ap-chengdu.myqcloud.com/github/hanlin19.png)
