@@ -14,13 +14,8 @@ coder  iOS
 > 创业公司呆过一个做SNS的，比开心网还要早一点，那时还是什么都不会的新人，真感谢那些领导同事的帮助，很可惜公司解散了。
 后来也参与过两次创业项目，主做技术，也参与产品方向讨论，可惜的是都没成功。
 
-- twitter: [xcode_dev][link1]
-- facebook: [facebook.com/ios.fisherlee][link2]
 - github: [https://github.com/fisherlee][link3]
-- sina weibo: `fisherlee_iOS`
 - blog: [http://blog.csdn.net/lw223][link4]
 
-[link1]: https://twitter.com/xcode_dev
-[link2]: facebook.com/ios.fisherlee
 [link3]: https://github.com/fisherlee
 [link4]: http://blog.csdn.net/lw223
